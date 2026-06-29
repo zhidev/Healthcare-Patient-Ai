@@ -1,0 +1,16 @@
+{
+    "id" : "01_simple_scheduling",
+    "type" : "appointment scheduling",
+    "first_patient_message" : "Hi, I would like to schedule an appointment",
+    "patient" : {
+        "name" : "Jane Doe",
+        "dob" : "January 1st, 1990",
+        "member_id" : "M123456789"
+    },
+    "goal" : "Schedule earliest available appointment",
+    "reason" : "Routine checkup",
+    "preferred_time" : "earliest availability",
+    "accepts_offered_time" : true,
+    "final_response" : "No, thank. That's all",
+    "max_turns" : 9
+}
