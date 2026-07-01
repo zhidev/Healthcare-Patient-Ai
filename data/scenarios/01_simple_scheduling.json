@@ -11,6 +11,6 @@
     "reason" : "Routine checkup",
     "preferred_time" : "earliest availability",
     "accepts_offered_time" : true,
-    "final_response" : "No, thank. That's all",
+    "final_response" : "No, thank you!",
     "max_turns" : 9
 }

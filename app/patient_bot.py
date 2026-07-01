@@ -1,34 +1,22 @@
+"""Rule-based fake patient bot for healthcare voice QA scenarios."""
+
 INTENT_PATTERNS = {
-    "ask_member_id": [
-        "member id",
-        "member number",
-        "id number",
-        "insurance id"
-    ],
-    "ask_name": [
-        "your name",
-        "patient name",
-        "member name"
-    ],
-    "ask_dob": [
-        "date of birth",
-        "dob",
-        "birthday",
-        "birth date"
-    ],
+    "ask_member_id": ["member id", "member number", "id number", "insurance id"],
+    "ask_name": ["your name", "patient name", "member name"],
+    "ask_dob": ["date of birth", "dob", "birthday", "birth date"],
     "ask_reason": [
         "reason",
         "nature",
         "appointment for",
         "seen for",
-        "what brings you in"
+        "what brings you in",
     ],
     "ask_time": [
         "when",
         "what time",
         "what day",
         "availability",
-        "schedule your appointment"
+        "schedule your appointment",
     ],
     "confirm_time": [
         "is this alright",
@@ -36,17 +24,27 @@ INTENT_PATTERNS = {
         "is that okay",
         "will schedule you",
         "scheduled for",
-        "confirm"
+        "confirm",
     ],
-    "end_call": [
-        "anything else",
-        "assist you with",
-        "help you with anything else"
-    ]
+    "ask_medication": [
+        "which medication",
+        "what medication",
+        "medication do you need",
+        "need refilled",
+        "refill for",
+    ],
+    "ask_pharmacy": [
+        "which pharmacy",
+        "what pharmacy",
+        "preferred pharmacy",
+        "pharmacy is most convenient",
+        "where should we send",
+    ],
+    "end_call": ["anything else", "assist you with", "help you with anything else"],
 }
 
 
-
+# Detects intent with given str
 def detect_intent(agent_text: str) -> str:
     text = agent_text.lower()
 
@@ -55,7 +53,6 @@ def detect_intent(agent_text: str) -> str:
             return intent
 
     return "unknown"
-
 
 
 # functions to match intents
@@ -83,6 +80,14 @@ def reply_confirm(scenario: dict, state: dict) -> tuple[str, bool]:
     return "Yes, that works.", False
 
 
+def reply_medication(scenario: dict, state: dict) -> tuple[str, bool]:
+    return f"I need a refill for my {scenario['medication']}.", False
+
+
+def reply_pharmacy(scenario: dict, state: dict) -> tuple[str, bool]:
+    return scenario["pharmacy"], False
+
+
 def reply_end(scenario: dict, state: dict) -> tuple[str, bool]:
     return scenario["final_response"], True
 
@@ -91,7 +96,7 @@ def reply_unknown(scenario: dict, state: dict) -> tuple[str, bool]:
     return "Sorry, could you repeat that?", False
 
 
-#Matching intent with the functions above
+# Matching intent with the functions above
 INTENT_HANDLERS = {
     "ask_name": reply_name,
     "ask_member_id": reply_member_id,
@@ -99,7 +104,9 @@ INTENT_HANDLERS = {
     "ask_reason": reply_reason,
     "ask_time": reply_time,
     "confirm_time": reply_confirm,
-    "end_call": reply_end
+    "ask_medication": reply_medication,
+    "ask_pharmacy": reply_pharmacy,
+    "end_call": reply_end,
 }
 
 
@@ -107,12 +114,9 @@ INTENT_HANDLERS = {
 # scenario = the JSON facts
 # state = conversation memory
 
+
 # return (reply_text, should_end_call)
-def get_patient_reply(
-    agent_text: str,
-    scenario: dict,
-    state: dict
-) -> tuple[str, bool]:
+def get_patient_reply(agent_text: str, scenario: dict, state: dict) -> tuple[str, bool]:
     state["turn_count"] = state.get("turn_count", 0) + 1
 
     if state["turn_count"] >= scenario.get("max_turns", 8):
@@ -121,5 +125,5 @@ def get_patient_reply(
     intent = detect_intent(agent_text)
     handler = INTENT_HANDLERS.get(intent, reply_unknown)
 
-    #runs and returns the handler function ie reply_name(scenario,state) = "Jane Doe"
+    # runs and returns the handler function ie reply_name(scenario,state) = "Jane Doe"
     return handler(scenario, state)
