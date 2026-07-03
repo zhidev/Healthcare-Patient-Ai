@@ -97,3 +97,27 @@ def test_unknown_reply():
 
     assert reply == "Sorry, could you repeat that?"
     assert should_end is False
+
+
+def test_bot_remembers_name_was_provided():
+    state = {}
+
+    reply_1, should_end_1 = get_patient_reply(
+        "Can I get your name?",
+        SCENARIO,
+        state,
+    )
+
+    assert reply_1 == "Jane Doe"
+    assert should_end_1 is False
+    assert state["provided"]["name"] is True
+
+    reply_2, should_end_2 = get_patient_reply(
+        "Can I get your name again?",
+        SCENARIO,
+        state,
+    )
+
+    assert reply_2 == "I already gave my name. It's Jane Doe."
+    assert should_end_2 is False
+    assert state["turn_count"] == 2

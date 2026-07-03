@@ -43,6 +43,16 @@ INTENT_PATTERNS = {
     "end_call": ["anything else", "assist you with", "help you with anything else"],
 }
 
+def mark_provided(state: dict, field: str) -> None:
+    """Remember that the patient already provided a field."""
+    provided = state.setdefault("provided", {})
+    provided[field] = True
+
+
+def was_provided(state: dict, field: str) -> bool:
+    """Check whether the patient already provided a field."""
+    return state.get("provided", {}).get(field, False)
+
 
 # Detects intent with given str
 def detect_intent(agent_text: str) -> str:
@@ -57,20 +67,39 @@ def detect_intent(agent_text: str) -> str:
 
 # functions to match intents
 def reply_name(scenario: dict, state: dict) -> tuple[str, bool]:
+    if was_provided(state, "name"):
+        return f"I already gave my name. It's {scenario['patient']['name']}.", False
+
+    mark_provided(state, "name")
     return scenario["patient"]["name"], False
 
 
 def reply_member_id(scenario: dict, state: dict) -> tuple[str, bool]:
+    if was_provided(state, "member_id"):
+        return (
+            f"I already gave my member ID. It's {scenario['patient']['member_id']}.",
+            False,
+        )
+
+    mark_provided(state, "member_id")
     return f"My member ID is {scenario['patient']['member_id']}.", False
 
-
 def reply_dob(scenario: dict, state: dict) -> tuple[str, bool]:
+    if was_provided(state, "dob"):
+        return (
+            f"I already gave my date of birth. It's {scenario['patient']['dob']}.",
+            False,
+        )
+
+    mark_provided(state, "dob")
     return scenario["patient"]["dob"], False
 
-
 def reply_reason(scenario: dict, state: dict) -> tuple[str, bool]:
-    return scenario["reason"], False
+    if was_provided(state, "reason"):
+        return f"I already said it is for a {scenario['reason']}.", False
 
+    mark_provided(state, "reason")
+    return scenario["reason"], False
 
 def reply_time(scenario: dict, state: dict) -> tuple[str, bool]:
     return "When is your earliest availability?", False
@@ -81,10 +110,18 @@ def reply_confirm(scenario: dict, state: dict) -> tuple[str, bool]:
 
 
 def reply_medication(scenario: dict, state: dict) -> tuple[str, bool]:
+    if was_provided(state, "medication"):
+        return f"I already told you. It's my {scenario['medication']}.", False
+
+    mark_provided(state, "medication")
     return f"I need a refill for my {scenario['medication']}.", False
 
 
 def reply_pharmacy(scenario: dict, state: dict) -> tuple[str, bool]:
+    if was_provided(state, "pharmacy"):
+        return f"I already gave the pharmacy. It's {scenario['pharmacy']}.", False
+
+    mark_provided(state, "pharmacy")
     return scenario["pharmacy"], False
 
 
