@@ -153,14 +153,51 @@ INTENT_HANDLERS = {
 
 
 # return (reply_text, should_end_call)
-def get_patient_reply(agent_text: str, scenario: dict, state: dict) -> tuple[str, bool]:
+def get_patient_reply(
+    agent_text: str,
+    scenario: dict,
+    state: dict,
+) -> tuple[str, bool]:
     state["turn_count"] = state.get("turn_count", 0) + 1
 
-    if state["turn_count"] >= scenario.get("max_turns", 8):
-        return scenario["final_response"], True
+    add_history(state, "agent", agent_text)
+
+    min_turns = scenario.get("min_turns", 5)
+    max_turns = scenario.get("max_turns", 14)
+
+    if state["turn_count"] >= max_turns:
+        reply = scenario["final_response"]
+        add_history(state, "patient", reply)
+        return reply, True
 
     intent = detect_intent(agent_text)
+
+    if intent == "end_call" and state["turn_count"] < min_turns:
+        reply = "I just want to make sure everything is set before we finish."
+        add_history(state, "patient", reply)
+        return reply, False
+
     handler = INTENT_HANDLERS.get(intent, reply_unknown)
 
-    # runs and returns the handler function ie reply_name(scenario,state) = "Jane Doe"
-    return handler(scenario, state)
+    reply, should_end = handler(scenario, state)
+
+    add_history(state, "patient", reply)
+
+    return reply, should_end
+
+
+#History for LLM
+def add_history(state: dict, speaker: str, text: str) -> None:
+    """Store one conversation message in state history."""
+    history = state.setdefault("history", [])
+    history.append(
+        {
+            "speaker": speaker,
+            "text": text,
+        }
+    )
+
+
+def get_history(state: dict) -> list[dict]:
+    """Return conversation history from state."""
+    return state.get("history", [])

@@ -12,5 +12,6 @@
     "preferred_time" : "earliest availability",
     "accepts_offered_time" : true,
     "final_response" : "No, thank you!",
-    "max_turns" : 9
+    "min_turns": 5,
+    "max_turns": 14
 }

@@ -11,5 +11,6 @@
   "medication": "allergy medication",
   "pharmacy": "Fake Pharmacy on 123 Fake Street",
   "final_response": "No, thank you. That's all.",
-  "max_turns": 8
+  "min_turns": 5,
+  "max_turns": 14
 }
