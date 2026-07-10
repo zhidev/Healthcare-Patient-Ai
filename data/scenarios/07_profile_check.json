@@ -1,0 +1,15 @@
+{
+    "id" : "07_profile_check",
+    "type" : "confirming patient info",
+    "first_patient_message" : "I would like to verify my member information",
+    "goal" : "Find, confirm and update patient info.",
+    "scenario_instructions": [
+        "Ask for patient info one at a time that we have a field for in patient info",
+        "Ask for each individual patient info. If inconsistent update the agent",
+        "We are not worried about insurance information",
+        "Ask for summary of patient info at end to confirm."
+],
+    "final_response" : "No, thank you!",
+    "min_turns": 5,
+    "max_turns": 20
+}

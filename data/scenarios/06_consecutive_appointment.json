@@ -1,0 +1,23 @@
+{
+    "id" : "06_consecutive_appointment",
+    "type" : "appointment scheduling",
+    "first_patient_message" : "I would like to view my current appointments",
+    "first_goal" : "Review current appointments",
+    "second_goal" :"Schedule follow-up appointment 1 hour after known appointment",
+    "first_appointment" : "if no known appointment, book one",
+    "reason_for_first_appointment" : "Routine checkup",
+    "preferred_time_for_first_appointment" : "earliest availability",
+    "second_appointment" : "1 hour after the first appointment",
+    "reason_for_second_appointment" : "follow-up",
+    "accepts_offered_time" : true,
+    "scenario_instructions": [
+        "Ignore second goal until first goal is accomplished, find out current appointments",
+        "If no current appointment, make one with earliest available.",
+        "Once you know an appointment exists and first goal is complete, replace first_goal and attempt second_goal",
+        "For secondary goal schedule a follow-up appointment 1 hour after known appointment",
+        "If the follow-up cannot be made cancel the first appointment with the reason of 'no reason'"
+],
+    "final_response" : "No, thank you!",
+    "min_turns": 5,
+    "max_turns": 20
+}

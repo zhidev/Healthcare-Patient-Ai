@@ -26,3 +26,9 @@ temp/
 # Local audio/transcription test files
 outputs/tmp/
 recordings/tmp/
+
+# Removed stuff
+deprecated
+
+# Temporary
+outputs

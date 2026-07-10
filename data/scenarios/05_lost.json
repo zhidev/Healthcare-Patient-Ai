@@ -1,0 +1,21 @@
+{
+    "id" : "05_lost",
+    "type" : "cannot find office",
+    "first_patient_message" : "Hello, I am at the clinic location but I can't find an accessibility option",
+    "goal" : "Figure out how to get to the clinic",
+    "location" : "first floor of a building with no elevator",
+    "scenario_instructions": [
+        "You have an appointment today but can't seem to enter the clinic",
+        "You are sure you are at the correct place, but you actually aren't",
+        "You know its located on the second floor but there is no elevator",
+        "Confirm there is an accessibility option once",
+        "Ask or answer questions that would obviously give the hint that you aren't at the correct location",
+        "Realize you are at the incorrect location after receiving sufficient evidence, you are actually at 4321 Injury Plaza",
+        "For this scenario, don't accept the agent redirecting the call elsewhere",
+        "Don't repeat the address or suite number",
+        "Be polite in the whole exchange"
+],
+    "final_response" : "No, thank you I'll be there shortly!",
+    "min_turns": 5,
+    "max_turns": 20
+}

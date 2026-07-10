@@ -1,0 +1,29 @@
+{
+  "clinic": {
+    "name": "Pivot Point Orthopedics",
+    "address": {
+      "street": "1234 Recovery Way",
+      "suite": "Suite 200",
+      "floor": "2nd floor",
+      "city": "Austin",
+      "state": "Texas"
+    },
+    "building": "Recovery Plaza Medical Building",
+    "parking": {
+      "available": true,
+      "details": "Free parking is available"
+    },
+    "accessibility": {
+      "elevator_access": true
+    },
+    "office_hours": {
+      "monday": "9:00 AM - 4:00 PM",
+      "tuesday": "9:00 AM - 4:00 PM",
+      "wednesday": "12:00 PM - 7:00 PM",
+      "thursday": "9:00 AM - 4:00 PM",
+      "friday": "9:00 AM - 12:00 PM",
+      "saturday": "Closed",
+      "sunday": "Closed"
+    }
+  }
+}

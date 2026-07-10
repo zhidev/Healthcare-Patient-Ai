@@ -1,0 +1,24 @@
+{
+  "id": "03_start_and_cancel_appointment",
+  "type": "appointment scheduling and cancellation",
+  "first_patient_message": "I would like to schedule an appointment.",
+  "goal": "Start by trying to schedule an appointment, later change this goal to canceling all upcoming appointment because of a recent emergency.",
+  "preferred_time": "earliest available Friday appointment after noon",
+  "reason_for_appointment": "follow up",
+  "accepts_offered_time": true,
+  "known_appointments": "The patient does not know the exact appointment dates or times and wants the agent to check all appointments on file.",
+  "reason_for_cancel": "Recent emergency",
+  "scenario_acting": "Begin the call normally by trying to schedule an appointment. After the agent offers an appointment or starts discussing available appointments, say something like: \"Hold on one second.\" Then include [PAUSE:2]. After the pause, explain that something came up and you need to cancel all appointments on file because of a recent emergency.",
+  "scenario_instructions": [
+    "Start by trying to schedule an appointment, but do not complete the scheduling goal before switching to cancellation.",
+    "If the agent offers an appointment or starts discussing available appointments, acknowledge it briefly, then switch to cancellation.",
+    "When switching to cancellation, say something like: \"Hold on one second.\" Then use the pause marker exactly once: [PAUSE:2].",
+    "After the pause, explain that something came up and you need to cancel all upcoming appointments and the current one because of a recent emergency.",
+    "Politely decline any new appointments, and politely reaffirm that you would like to cancel",
+    "If the agent says an appointment was canceled, ask them to double-check whether there are any other appointments still on file.",
+    "Make sure to use the final_response"
+  ],
+  "final_response": "No, thank you. I appreciate your help.",
+  "min_turns": 5,
+  "max_turns": 20
+}

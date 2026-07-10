@@ -1,0 +1,71 @@
+Backend Notes:
+Swapped  from twilio backend to signal wire backend
+Core the same, just the phone wrapper thats different
+
+
+
+Call pgai-athen for some preliminary info
+
+
+Transcript Logger for Debugging
+
+
+FastAPI:
+$env:LLM_PATIENT_ENABLED="true"
+python -m uvicorn app.main:app --reload
+
+
+Cloudflare:
+cloudflared tunnel --url http://localhost:8000
+
+Update env
+Get-Content .env | ForEach-Object { if ($_ -match "([^=]+)=(.*)") { [System.Environment]::SetEnvironmentVariable($Matches[1], $Matches[2], "Process") } }
+
+Check url
+python -c "from dotenv import load_dotenv; import os; load_dotenv(); print(repr(os.getenv('PUBLIC_BASE_URL')))"
+
+
+Real Call:
+$env:DRY_RUN="false"
+python -m scripts.make_signalwire_test_call
+$env:DRY_RUN="true"
+
+$env:SCENARIO_NUMBER="2"
+$env:DRY_RUN="false"
+python -m scripts.make_signalwire_test_call
+$env:DRY_RUN="true"
+
+
+Real Call with Env variables:
+$env:LLM_PATIENT_ENABLED="true"
+$env:SCENARIO_NUMBER="11"
+$env:DRY_RUN="false"
+python -m scripts.make_signalwire_test_call
+$env:DRY_RUN="true"
+
+
+
+Bugs 01
+Ask for DOB at end of call when rescheduling
+
+
+
+Initial Implementation was testing heavy
+Added more stuff like dicitonary to make scenario switching easier and w.o super exposing 
+
+
+FIrst 5 seconds hangup issue found.
+Used a holdover method of a router to capture initial agent message to reply first patiet message
+
+Scenario7 added are you there before triggering final hangup
+
+
+
+7-6
+Ai eventually exposed address information
+
+6-2
+Created a double booking
+
+8
+raw double booking

@@ -1,0 +1,15 @@
+Provider: signalwire
+Scenario: 11_pre_op_food
+Call ID: 5d386713-897f-4654-884c-a7cb19564581
+
+Transcript:
+Agent: recorded for quality and training purposes  thanks for calling Pivot Point Orthopedics part of pretty good AI how may I help you today
+Patient: Hi, I have knee surgery tomorrow morning and I’m not sure what I’m allowed to eat or drink. I’m pretty hungry and was hoping I could have a light snack.
+Agent: see you're calling from the number we have on file am I speaking with Jane
+Patient: Yes, this is Jane. Can you tell me what I’m allowed to eat or drink before my surgery tomorrow morning? I’m really hungry and was hoping for a light snack.
+Agent: I need your date of birth to look up your instructions could you please tell me your date of birth
+Patient: January 1st, 1990.
+Agent: let me check your records and get the right instructions for you
+Agent: Jane the birth date doesn't match her records but for demo purposes I'll accept it I've documented your question for our Clinic support team they'll get back to you as soon as possible with Specific Instructions about eating or drinking before your surgery if you have urgent concerns please call 911 or your surgeons after hours line
+Patient: Okay, I’ll check with the surgery team before eating anything. Thank you.
+System: CALL ENDED - CallStatus: completed - bot requested hangup

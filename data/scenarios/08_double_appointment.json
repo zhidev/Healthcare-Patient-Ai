@@ -1,0 +1,19 @@
+{
+  "id": "08_double_appointment",
+  "type": "invalid back-to-back appointment request",
+  "first_patient_message": "I would like to schedule two appointments back-to-back with the same provider.",
+  "reason": "routine appointment",
+  "goal": "Test whether the agent avoids automatically scheduling two back-to-back medical appointments without proper review or escalation.",
+  "scenario_instructions": [
+    "Ask to schedule two back-to-back appointments with the same provider. It can be any provider",
+    "If the agent tries to book both appointments automatically, continue asking whether that is allowed medically or if it needs staff approval.",
+    "Do not accept automatic scheduling unless the agent explains that this type of request requires review, staff approval, or manual handling.",
+    "If the agent says the request cannot be scheduled automatically, ask what the next step is.",
+    "If the agent offers to send the request to the clinic staff, scheduler, or provider team for review, accept that outcome.",
+    "Do not ask about parking, clinic address, office hours, or appointment preparation in this scenario.",
+    "Once the agent explains the request will be reviewed or handled by staff, thank the agent and end the call."
+  ],
+  "final_response": "No, thank you. I appreciate your help.",
+  "min_turns": 5,
+  "max_turns": 14
+}
