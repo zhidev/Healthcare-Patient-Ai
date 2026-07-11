@@ -4,9 +4,9 @@
 
 **Severity:** Low-Middle
 
-**Call:** [signalwire_04_hipaa_status_privacy_potential.txt](../transcripts/signalwire_04_hipaa_status_privacy_potential.txt)
+**Call:** [signalwire_04_hipaa_status_privacy_potential.txt](../transcripts_and_recordings/signalwire_04_hipaa_status_privacy_potential.txt)
 
-**Recording:** [signalwire_04_hipaa_status_privacy_potential.mp3](../transcript_and_recordings/signalwire_04_hipaa_status_privacy_potential.mp3)
+**Recording:** [signalwire_04_hipaa_status_privacy_potential.mp3](../transcripts_and_recordings/signalwire_04_hipaa_status_privacy_potential.mp3)
 
 **Timestamp:** 0:15-0:48
 

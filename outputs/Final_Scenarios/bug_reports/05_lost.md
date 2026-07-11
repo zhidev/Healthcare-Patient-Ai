@@ -4,9 +4,9 @@
 
 **Severity:** Low
 
-**Call:** [signalwire_05_lost_nonsense_call.txt](../transcripts/signalwire_05_lost_nonsense_call.txt)
+**Call:** [signalwire_05_lost_nonsense_call.txt](../transcripts_and_recordings/signalwire_05_lost_nonsense_call.txt)
 
-**Recording:** [signalwire_05_lost_nonsense_call.mp3](../transcript_and_recordings/signalwire_05_lost_nonsense_call.mp3)
+**Recording:** [signalwire_05_lost_nonsense_call.mp3](../transcripts_and_recordings/signalwire_05_lost_nonsense_call.mp3)
 
 **Timestamp:** 3:12-3:40
 

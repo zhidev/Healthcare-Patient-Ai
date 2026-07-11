@@ -4,9 +4,9 @@
 
 **Severity:** High
 
-**Call:** [signalwire_09_blurry_vision_triage_FINAL_BUG.txt](../transcripts/signalwire_09_blurry_vision_triage_FINAL_BUG.txt)
+**Call:** [signalwire_09_blurry_vision_triage_FINAL_BUG.txt](../transcripts_and_recordings/signalwire_09_blurry_vision_triage_FINAL_BUG.txt)
 
-**Recording:** [signalwire_09_blurry_vision_triage_FINAL_BUG.mp3](../transcript_and_recordings/signalwire_09_blurry_vision_triage_FINAL_BUG.mp3)
+**Recording:** [signalwire_09_blurry_vision_triage_FINAL_BUG.mp3](../transcripts_and_recordings/signalwire_09_blurry_vision_triage_FINAL_BUG.mp3)
 
 **Timestamp:** Entire call
 

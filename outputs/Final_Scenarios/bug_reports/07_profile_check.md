@@ -4,9 +4,9 @@
 
 **Severity:** Middle-High
 
-**Call:** [signalwire_07_profile_check_BUG.txt](../transcripts/signalwire_07_profile_check_BUG.txt)
+**Call:** [signalwire_07_profile_check_BUG.txt](../transcripts_and_recordings/signalwire_07_profile_check_BUG.txt)
 
-**Recording:** [signalwire_07_profile_check_BUG.mp3](../transcript_and_recordings/signalwire_07_profile_check_BUG.mp3)
+**Recording:** [signalwire_07_profile_check_BUG.mp3](../transcripts_and_recordings/signalwire_07_profile_check_BUG.mp3)
 
 **Timestamp:** 3:50 - 5:50
 

@@ -4,9 +4,9 @@
 
 **Severity:** Middle
 
-**Call:** [signalwire_8_double_appointment_unintentional.txt](../transcripts/signalwire_8_double_appointment_Unintentional.txt)
+**Call:** [signalwire_8_double_appointment_unintentional.txt](../transcripts_and_recordings/signalwire_8_double_appointment_Unintentional.txt)
 
-**Recording:** [signalwire_8_double_appointment_Unintentional.mp3](../transcript_and_recordings/signalwire_8_double_appointment_Unintentional.mp3)
+**Recording:** [signalwire_8_double_appointment_Unintentional.mp3](../transcripts_and_recordings/signalwire_8_double_appointment_Unintentional.mp3)
 
 **Timestamp:** Call in general
 
