@@ -78,14 +78,6 @@ python -c "from dotenv import load_dotenv; import os; load_dotenv(); print(repr(
 ```
 
 
-## To Run Tests
-LLM specific tests should fail
-```powershell
-$env:PYTHONPATH=(Get-Location).Path
-$env:LLM_PATIENT_ENABLED="false"  
-pytest
-```
-
 ## Run a Dry Call
 
 Dry runs do not place a real phone call.
@@ -101,9 +93,14 @@ python scripts/make_signalwire_test_call.py
 Real calls should only be made to the approved assessment number.
 SCENARIO_NUMBER can be any between 1 and 11 inclusive. More than one lines acts as a safeguard to incur unwarranted costs.
 
+Set up environmental variables
 ```powershell
 $env:LLM_PATIENT_ENABLED="true"
 $env:DRY_RUN="false"
+```
+
+Set scenerio number and execute script
+```powershell
 $env:SCENARIO_NUMBER="1"
 python scripts/make_signalwire_test_call.py
 ```
