@@ -2,8 +2,7 @@
     "patient" : {
         "name" : "Jane Doe",
         "dob" : "January 1st, 1990",
-        "member_id" : "M123456789",
-        "address" : "123 Fake Avenue",
+        "address" : "124 Fake Avenue",
         "phone number" : "2094797673"
     }
 }

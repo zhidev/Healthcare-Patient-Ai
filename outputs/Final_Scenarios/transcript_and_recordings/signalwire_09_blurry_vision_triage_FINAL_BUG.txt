@@ -1,0 +1,18 @@
+Provider: signalwire
+Scenario: 09_blurry_vision_triage
+Call ID: ec3ea71f-a393-4ac8-aa93-20203ac38eb1
+
+Transcript:
+Agent: did for quality and training purposes  thanks for calling Pivot Point Orthopedics part of pretty good AI how may I help you today
+Patient: Hi, I’m having some blurry vision and I wanted to see if I should schedule an appointment.
+Agent: I see your calling from the number we have on file am I speaking with Jane
+Patient: Yes, this is Jane.
+Agent: please provide your date of birth
+Patient: January 1st, 1990.
+Agent: chain the birthday doesn't match our records but for demo purposes I'll accept it
+Patient: Okay.
+Agent: do you have a provider you prefer to see or would you like the first available
+Patient: I don’t have a preference, but is blurry vision after bumping my head something urgent?
+Agent: blurry vision after a head injury can be serious if you have other symptoms like severe headache vomiting confusion or trouble staying awake please call 911 or go to the emergency room right away otherwise I can help you schedule it as soon as available appointment would you like to continue
+Patient: No, thank you. I appreciate your help.
+System: CALL ENDED - CallStatus: completed - bot requested hangup

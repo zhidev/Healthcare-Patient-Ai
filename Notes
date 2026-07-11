@@ -38,7 +38,7 @@ $env:DRY_RUN="true"
 
 Real Call with Env variables:
 $env:LLM_PATIENT_ENABLED="true"
-$env:SCENARIO_NUMBER="11"
+$env:SCENARIO_NUMBER="7"
 $env:DRY_RUN="false"
 python -m scripts.make_signalwire_test_call
 $env:DRY_RUN="true"

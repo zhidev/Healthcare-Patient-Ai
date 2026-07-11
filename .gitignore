@@ -10,6 +10,8 @@ env/
 
 # Environment variables / secrets
 .env
+Notes
+Bug_List
 
 # OS files
 .DS_Store
@@ -28,7 +30,9 @@ outputs/tmp/
 recordings/tmp/
 
 # Removed stuff
-deprecated
+deprecated/
+tests/
 
 # Temporary
-outputs
+outputs/Iterative_scenarios/
+outputs/transcripts/

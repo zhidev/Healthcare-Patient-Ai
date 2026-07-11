@@ -1,0 +1,20 @@
+Provider: signalwire
+Scenario: 08_double_appointment
+Call ID: ab00be4c-b81a-40f2-b5a2-d702f328db16
+
+Transcript:
+Agent: recorded for quality and training purposes  thanks for calling Pivot Point Orthopedics part of pretty good AI how may I help you today
+Patient: Hi, I’d like to schedule two appointments at the same time slot, if possible.
+Agent: I can help with scheduling are both appointments for you or are you booking for someone else as well
+Patient: They’re both for me. I’d like them at the exact same time slot if possible—it would be more convenient.
+Agent: I see you're calling from the number we have on file when speaking with Jane
+Patient: Yes, that’s me. I’d like to schedule both appointments for the exact same time slot if possible. If that can’t be done automatically, what’s the next step?
+Agent: I'll check on scheduling options was I have your date of birth could you please provide your date of birth
+Patient: Sure, it’s January 1st, 1990.
+Agent: Jane the birth date doesn't match our records but for demo purposes I'll accept it what types of appointments do you need to schedule
+Patient: I need to schedule two appointments, and I’d like them both at the exact same time slot if possible. Any available provider is fine.
+Agent: can you tell me the reason for each appointment for example is water routine visit and the other procedure or something else this will help me find the right options for you
+Patient: I’m sorry, I can’t say the reason. I just need to schedule both appointments at the same time slot if possible. If that needs staff review, what’s the next step?
+Agent: I've documented your request to schedule 2 appointments at the same time slot our Clinic support team will review it and get back to you as soon as they can is there anything else I can help you with today
+Patient: No, thank you. I appreciate your help.
+System: CALL ENDED - CallStatus: completed - bot requested hangup

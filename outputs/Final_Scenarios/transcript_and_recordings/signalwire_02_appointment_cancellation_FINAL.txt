@@ -1,0 +1,22 @@
+Provider: signalwire
+Scenario: 02_appointment_cancellation
+Call ID: a7ea4b02-7018-4708-9c28-9a4d850ef6e7
+
+Transcript:
+Agent: recorded for quality and training purposes  thanks for calling Pivot Point Orthopedics part of pretty good AI how may I help you today
+Patient: I’d like to check all my current appointments, please.
+Agent: I see you're calling from the number we have on file am I speaking with Jane
+Patient: Yes, this is Jane.
+Agent: please provide your date of birth
+Patient: January 1st, 1990.
+Agent: could you please tell me your date of birth
+Patient: It’s January 1st, 1990.
+Agent: appointments on Monday July 13th 1 is at 10:30 a.m. with Kelly Noble MD and another at 11:00 a.m. with Dr dubia Howser would you like details about either appointment or need to make any changes
+Patient: Please cancel both of those appointments, and could you double check if there are any other appointments on file too?
+Agent: I found 2 appointments for you on Monday July 13th 1 was Kelly Noble MD and 1 with Dr Duty Howser can you share the reason for canceling these appointments also I'll double check if there are any other appointments on file after this
+Patient: Prefer not to say. Please go ahead and cancel both, and check if there are any other appointments on file too.
+Agent: 1 with Kelly Noble MD and 1 with Dr Doogie Howser is that correct
+Patient: Yes, that’s correct. Please cancel both, and let me know if there are any other appointments on file too.
+Agent: on July 13th have been canceled there are no other upcoming appointments on file would you like to schedule a new appointment or need help with anything else
+Patient: No, thank you!
+System: CALL ENDED - CallStatus: completed - bot requested hangup

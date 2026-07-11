@@ -3,13 +3,12 @@
 import re
 from xml.sax.saxutils import escape
 
-# <Response>
-#     <Gather input="speech" action="/signalwire/turn/{scenario_id}" method="POST" speechTimeout="auto" timeout="12"/>
-#     <Say>Hello?</Say>
-#     <Gather input="speech" action="/signalwire/turn/{scenario_id}" method="POST" speechTimeout="auto" timeout="8"/>
-#     <Say>I did not hear anything. Goodbye.</Say>
-#     <Hangup/>
-# </Response>"""
+SIGNALWIRE_READ_TIMEOUT_MS = 15000
+START_GATHER_TIMEOUT_SECONDS = 18
+TURN_GATHER_TIMEOUT_SECONDS = 8
+WAIT_GATHER_TIMEOUT_SECONDS = 4
+FINAL_INQUIRY_TIMEOUT_SECONDS = 5
+MAX_PAUSE_SECONDS = 5
 
 
 def build_start_cxml(scenario_id: str) -> str:
@@ -17,7 +16,7 @@ def build_start_cxml(scenario_id: str) -> str:
 
     return f"""<?xml version="1.0" encoding="UTF-8"?>
 <Response>
-    <Gather input="speech" action="/signalwire/turn/{scenario_id}#rt=15000" method="POST" speechTimeout="2" timeout="18"/>
+    <Gather input="speech" action="/signalwire/turn/{scenario_id}#rt={SIGNALWIRE_READ_TIMEOUT_MS}" method="POST" speechTimeout="2" timeout="{START_GATHER_TIMEOUT_SECONDS}"/>
     <Redirect method="POST">/signalwire/wait/{scenario_id}</Redirect>
 </Response>"""
 
@@ -42,7 +41,7 @@ def build_turn_cxml(
             xml_parts.append(f"    <Say>{escape(before_pause)}</Say>")
 
         pause_seconds = int(match.group(1))
-        pause_seconds = max(1, min(pause_seconds, 5))
+        pause_seconds = max(1, min(pause_seconds, MAX_PAUSE_SECONDS))
 
         xml_parts.append(f'    <Pause length="{pause_seconds}"/>')
 
@@ -68,7 +67,7 @@ def build_turn_cxml(
     return f"""<?xml version="1.0" encoding="UTF-8"?>
 <Response>
 {say_xml}
-    <Gather input="speech" action="/signalwire/turn/{scenario_id}#rt=15000" method="POST" speechTimeout="auto" timeout="8"/>
+    <Gather input="speech" action="/signalwire/turn/{scenario_id}#rt={SIGNALWIRE_READ_TIMEOUT_MS}" method="POST" speechTimeout="auto" timeout="{TURN_GATHER_TIMEOUT_SECONDS}"/>
     <Redirect method="POST">/signalwire/wait/{scenario_id}</Redirect>
 </Response>"""
 
@@ -85,7 +84,7 @@ def build_wait_cxml(
     return f"""<?xml version="1.0" encoding="UTF-8"?>
 <Response>
     <Pause length="{pause_seconds}"/>
-    <Gather input="speech" action="/signalwire/turn/{scenario_id}#rt=15000" method="POST" speechTimeout="auto" timeout="4"/>
+    <Gather input="speech" action="/signalwire/turn/{scenario_id}#rt={SIGNALWIRE_READ_TIMEOUT_MS}" method="POST" speechTimeout="auto" timeout="{WAIT_GATHER_TIMEOUT_SECONDS}"/>
     <Redirect method="POST">/signalwire/wait/{scenario_id}?wait_count={next_wait_count}</Redirect>
 </Response>"""
 
@@ -107,7 +106,7 @@ def build_final_inquiry_cxml(scenario_id: str, wait_count: int) -> str:
 
     return f"""<?xml version="1.0" encoding="UTF-8"?>
 <Response>
-    <Gather input="speech" action="/signalwire/turn/{scenario_id}#rt=15000" method="POST" speechTimeout="auto" timeout="5">
+    <Gather input="speech" action="/signalwire/turn/{scenario_id}#rt={SIGNALWIRE_READ_TIMEOUT_MS}" method="POST" speechTimeout="auto" timeout="{FINAL_INQUIRY_TIMEOUT_SECONDS}">
         <Say>Are you still there?</Say>
     </Gather>
     <Redirect method="POST">/signalwire/wait/{scenario_id}?wait_count={next_wait_count}</Redirect>

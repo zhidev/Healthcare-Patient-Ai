@@ -1,5 +1,4 @@
 # FastAPI backend for the healthcare patient QA bot.
-import os
 import time
 
 from fastapi import FastAPI, Form, HTTPException, Response
@@ -16,13 +15,22 @@ from app.signalwire_xml import (
     build_turn_cxml,
     build_wait_cxml,
 )
-from app.transcript_logger import save_transcript
-
-# Twilio
 
 app = FastAPI(title="Healthcare Voice QA Bot")
 
 CALL_STATES: dict[str, dict] = {}
+FINAL_INQUIRY_WAIT_COUNT = 3
+MAX_WAIT_COUNT = 4
+FINAL_CALL_STATUSES = {"completed", "failed", "busy", "no-answer", "canceled"}
+
+
+def load_scenario_or_404(scenario_id: str) -> dict:
+    """Load a scenario or raise a 404 response."""
+
+    try:
+        return load_scenario(scenario_id)
+    except FileNotFoundError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error
 
 
 def generate_patient_reply(
@@ -30,21 +38,7 @@ def generate_patient_reply(
     scenario: dict,
     state: dict,
 ) -> tuple[str, bool]:
-    """Generate patient reply using LLM mode if enabled, otherwise rules."""
-
-    if os.getenv("LLM_PATIENT_ENABLED", "false").lower() == "true":
-        try:
-            return llm_patient.get_llm_patient_reply(
-                agent_text=agent_text,
-                scenario=scenario,
-                state=state,
-            )
-        except Exception:
-            return llm_patient.get_llm_patient_reply(
-                agent_text=agent_text,
-                scenario=scenario,
-                state=state,
-            )
+    """Generate the next patient reply."""
 
     return llm_patient.get_llm_patient_reply(
         agent_text=agent_text,
@@ -70,10 +64,7 @@ def health():
 @app.post("/chat")
 def chat(request: ChatRequest):
     """load up scenario based off id to get reply"""
-    try:
-        scenario = load_scenario(request.scenario_id)
-    except FileNotFoundError as error:
-        raise HTTPException(status_code=404, detail=str(error)) from error
+    scenario = load_scenario_or_404(request.scenario_id)
 
     reply, should_end = generate_patient_reply(
         agent_text=request.agent_text,
@@ -91,16 +82,13 @@ def signalwire_start(
     scenario_id: str,
     CallSid: str = Form(default="local-signalwire-test-call"),
 ):
-    """Return SignalWire cXML for the first patient message."""
+    """Return SignalWire cXML that waits for the agent to speak first."""
 
-    try:
-        scenario = load_scenario(scenario_id)
-    except FileNotFoundError as error:
-        raise HTTPException(status_code=404, detail=str(error)) from error
+    load_scenario_or_404(scenario_id)
 
     CALL_STATES[CallSid] = {}
 
-    save_transcript(
+    transcript_logger.save_transcript(
         provider="signalwire",
         scenario_id=scenario_id,
         call_id=CallSid,
@@ -108,8 +96,7 @@ def signalwire_start(
     )
 
     xml = build_start_cxml(scenario_id=scenario_id)
-    # print("\n--- SignalWire Start XML ---")
-    # print(xml)
+
     print("\n--- SignalWire Start ---")
     print(f"Scenario: {scenario_id}")
     print(f"CallSid: {CallSid}")
@@ -127,10 +114,7 @@ def signalwire_turn(
 ):
     """Return SignalWire cXML for the next patient reply."""
 
-    try:
-        scenario = load_scenario(scenario_id)
-    except FileNotFoundError as error:
-        raise HTTPException(status_code=404, detail=str(error)) from error
+    scenario = load_scenario_or_404(scenario_id)
 
     state = CALL_STATES.setdefault(CallSid, {})
 
@@ -145,7 +129,7 @@ def signalwire_turn(
     if agent_text:
         transcript_logger.add_history(state, "agent", agent_text)
 
-        save_transcript(
+        transcript_logger.save_transcript(
             provider="signalwire",
             scenario_id=scenario_id,
             call_id=CallSid,
@@ -174,7 +158,7 @@ def signalwire_turn(
 
     transcript_logger.add_history(state, "patient", reply)
 
-    save_transcript(
+    transcript_logger.save_transcript(
         provider="signalwire",
         scenario_id=scenario_id,
         call_id=CallSid,
@@ -210,7 +194,7 @@ def signalwire_status(
     print(f"CallSid: {CallSid}")
     print(f"CallStatus: {CallStatus}")
 
-    if CallStatus in {"completed", "failed", "busy", "no-answer", "canceled"}:
+    if CallStatus in FINAL_CALL_STATUSES:
         print("CALL ENDED")
 
         state = CALL_STATES.setdefault(CallSid, {})
@@ -225,7 +209,7 @@ def signalwire_status(
 
         transcript_logger.add_history(state, "system", end_text)
 
-        save_transcript(
+        transcript_logger.save_transcript(
             provider="signalwire",
             scenario_id=scenario_id,
             call_id=CallSid,
@@ -248,13 +232,13 @@ def signalwire_wait(
     print(f"CallSid: {CallSid}")
     print(f"Wait count: {wait_count}")
 
-    if wait_count >= 4:
+    if wait_count >= MAX_WAIT_COUNT:
         xml = build_no_input_goodbye_cxml()
         print("Max wait count reached. Hanging up.")
         print(xml)
         return Response(content=xml, media_type="application/xml")
 
-    if wait_count == 3:
+    if wait_count == FINAL_INQUIRY_WAIT_COUNT:
         xml = build_final_inquiry_cxml(
             scenario_id=scenario_id,
             wait_count=wait_count,

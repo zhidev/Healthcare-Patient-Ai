@@ -11,6 +11,8 @@ def safe_filename(value: str) -> str:
     """Convert call id into a safe filename."""
     return re.sub(r"[^a-zA-Z0-9_-]", "_", value)
 
+
+
 def add_history(state: dict, speaker: str, text: str) -> None:
     """Add one clean message to call history."""
 
@@ -48,9 +50,11 @@ def save_transcript(
 
     TRANSCRIPT_DIR.mkdir(parents=True, exist_ok=True)
 
+    safe_provider = safe_filename(provider)
+    safe_scenario_id = safe_filename(scenario_id)
     safe_call_id = safe_filename(call_id)
 
-    path = TRANSCRIPT_DIR / f"{provider}_{scenario_id}_{safe_call_id}.txt"
+    path = TRANSCRIPT_DIR / f"{safe_provider}_{safe_scenario_id}_{safe_call_id}.txt"
 
     history = state.get("history", [])
 

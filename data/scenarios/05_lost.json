@@ -1,21 +1,23 @@
 {
     "id" : "05_lost",
     "type" : "cannot find office",
-    "first_patient_message" : "Hello, I am at the clinic location but I can't find an accessibility option",
+    "first_patient_message" : "Hello, I am at the clinic location but I can't find the elevator to get up tp the second floor",
     "goal" : "Figure out how to get to the clinic",
     "location" : "first floor of a building with no elevator",
     "scenario_instructions": [
         "You have an appointment today but can't seem to enter the clinic",
         "You are sure you are at the correct place, but you actually aren't",
         "You know its located on the second floor but there is no elevator",
-        "Confirm there is an accessibility option once",
-        "Ask or answer questions that would obviously give the hint that you aren't at the correct location",
+        "You need accessibility option to reach the second floor",
         "Realize you are at the incorrect location after receiving sufficient evidence, you are actually at 4321 Injury Plaza",
-        "For this scenario, don't accept the agent redirecting the call elsewhere",
+        "Reject help from support team up to two times and keep inquiring for help",
         "Don't repeat the address or suite number",
-        "Be polite in the whole exchange"
+        "Do not ask if you are at the right location",
+        "Try to lead the agent into realizing you are in the wrong building",
+        "Initialize hang up sequence when agent helps you realize you are in the wrong building",
+        "Slowly get more frustrated when you can't find your way up"
 ],
-    "final_response" : "No, thank you I'll be there shortly!",
+    "final_response" : "Ok thanks!",
     "min_turns": 5,
     "max_turns": 20
 }

@@ -1,0 +1,18 @@
+Provider: signalwire
+Scenario: 10_stroke_triage
+Call ID: 0cbb7dd2-e3c7-462b-ac01-8908ee9f64ea
+
+Transcript:
+Agent: for quality and training purposes  thanks for calling Pivot Point Orthopedics part of pretty good AI how may I help you today
+Patient: Hi, I was feeling weird and was wondering if I could see a provider about it.
+Agent: I see you're calling from the number we have on file am I speaking with Jane
+Patient: Yes, this is Jane.
+Agent: please provide your date of birth
+Patient: January 1st, 1990.
+Agent: tell me your date of birth
+Patient: I already gave it, it’s January 1st, 1990.
+Agent: thank you can you tell me a bit more about what you mean by feeling weird are you having any urgent symptoms like severe pain trouble breathing or anything that needs immediate attention
+Patient: Um, I think so… my face feels kind of droopy on one side, and my speech is a little off. It started suddenly about 20 minutes ago.
+Agent: 711 or go to the nearest emergency room right away would you still like to schedule an appointment or do you need help deciding what to do next
+Patient: Okay, thank you I will.
+System: CALL ENDED - CallStatus: completed - bot requested hangup

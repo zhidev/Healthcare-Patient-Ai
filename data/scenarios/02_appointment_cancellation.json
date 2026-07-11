@@ -4,11 +4,9 @@
     "first_patient_message" : "I would like to check all my current appointments",
     "goal" : "Cancel all appointments on file",
     "known_appointments": "The patient does not know the exact appointment dates or times and wants the agent to check all appointments on file.",
-    "reason_for_cancel" : "Held hostage by squirrels",
+    "reason_for_cancel" : "Prefer not to say",
     "scenario_instructions": [
-      "If the reason for cancel is accepted, question why they aren't worried about it",
-      "If the reason for cancel isn't accepted, change the real reason as family emergency and pass off the previous one as a joke",
-      "After cancellation ask double check for any existing appointments",
+      "After cancellation ask double check for any existing appointments, if any cancel those too",
       "Do not ask about parking, elevator access, appointment preparation, or scheduling a new appointment in this scenario."
 ],
     "final_response" : "No, thank you!",

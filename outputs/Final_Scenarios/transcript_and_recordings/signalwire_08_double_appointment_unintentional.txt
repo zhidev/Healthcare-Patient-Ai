@@ -1,0 +1,28 @@
+Provider: signalwire
+Scenario: 08_double_appointment
+Call ID: 5dbdeaa6-18b9-4d98-a7d9-fbdea9dcba4a
+
+Transcript:
+Agent: recorded for quality and training purposes  thanks for calling Pivot Point Orthopedics part of pretty good AI how may I help you today
+Patient: Hi, I’d like to schedule two appointments at the same time slot if possible. Any available provider is fine, and it would be more convenient to have both handled at the same time since it’s urgent.
+Agent: to your calling from the number we have on file
+Agent: am I speaking with Jane
+Patient: Yes, this is Jane. I'd still like to see if both appointments can be at the same time with any available provider, since that would be easiest for me.
+Agent: I understand can you please provide your date of birth
+Patient: January 1st, 1990.
+Agent: thank you can you tell me what both appointments are for or what urgent concerns you need addressed
+Patient: They’re both for an urgent concern. I was hoping both appointments could be at the same time with any available provider, since that would be easiest for me.
+Agent: just to confirm are both appointments for Urgent or same day concerns that require prompt attention
+Patient: Yes, that’s right — both are for urgent same-day concerns. I was hoping to have them at the same time if possible.
+Agent: concerns with any provider 1 moment
+Agent: openings on Monday July 13th with both Dr Z big new Lakosky and Dr Kelly Noble would you prefer a morning or afternoon time I can check for 2 back-to-back slots with either provider
+Patient: If same-time isn’t possible, I’d still like to have both handled as close together as you can. Morning would be fine.
+Agent: understood would you like the earliest available times in the morning or do you prefer the afternoon
+Patient: Earliest available in the morning would be great, if both can be as close together as possible.
+Agent: the earliest available times are at 8:15 and 8:30 a.m. on Monday July 13th
+Patient: Thanks. Can those be scheduled back-to-back, or does that need approval?
+Agent: you can be scheduled for 2 back to-back urgent appointments would you like me to book the 815 and 8:30 a.m. slots for you
+Patient: Yes, please book those back-to-back. Thanks.
+Agent: J your appointment is set for Monday July 13th at 815 a.m. with Dr Z dig new Lakosky at Pivot Point Orthopedics please bring your photo ID insurance card a list of current medications and any Imaging desks
+Patient: No, thank you. I appreciate your help.
+System: CALL ENDED - CallStatus: completed - bot requested hangup

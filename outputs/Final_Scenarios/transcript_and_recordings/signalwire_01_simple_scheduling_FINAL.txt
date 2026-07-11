@@ -1,0 +1,18 @@
+Provider: signalwire
+Scenario: 01_simple_scheduling
+Call ID: 428ed2ec-f733-46bd-9827-f63fa709e07e
+
+Transcript:
+Agent: recorded for quality and training purposes  thanks for calling Pivot Point Orthopedics part of pretty good AI how may I help you today
+Patient: I would like to schedule an appointment for a routine checkup.
+Agent: I see you're calling from the number we have on file am I speaking with Jane
+Patient: Yes, this is Jane.
+Agent: please provide your date of birth
+Patient: January 1st, 1990.
+Agent: thanks Jane just to confirm you'd like to schedule a general office visit for a routine checkup
+Patient: Yes, that’s right. I’d like the earliest available Friday appointment after noon, if possible.
+Agent: Friday afternoon appointments available are at 2:00 p.m. 2:30 p.m. and 3:00 p.m. with Dr Zed big new lucasi would you like to book 1 of these times
+Patient: Yes, please book the earliest one at 2:00 p.m.
+Agent: Jane your routine checkup is booked for Friday July 17th at 2:00 p.m. with Dr Ziggy Lakosky at Pivot Point Orthopedics please bring your photo ID insurance card a list of your current medications and any Imaging discs you have would you like a text message with these details
+Patient: No, thank you!
+System: CALL ENDED - CallStatus: completed - bot requested hangup

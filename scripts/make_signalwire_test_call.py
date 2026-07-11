@@ -25,10 +25,19 @@ SCENARIO_DICT = {
 def main():
     dry_run = os.getenv("DRY_RUN", "true").lower() == "true"
 
+    # Example line for terminal:
     # $env:SCENARIO_NUMBER="2"   replace 2 with whatever scenario # u want
     # $env:DRY_RUN="true"
     # python scripts/make_signalwire_test_call.py
     scenario_number = int(os.getenv("SCENARIO_NUMBER", "1"))
+
+    #Basically if scenario number is not in scenario dict then its invalid
+    if scenario_number not in SCENARIO_DICT:
+        valid_numbers = ", ".join(str(number) for number in SCENARIO_DICT)
+        raise ValueError(
+            f"Invalid SCENARIO_NUMBER={scenario_number}. "
+            f"Valid options are: {valid_numbers}"
+        )
     scenario_id = SCENARIO_DICT[scenario_number]
 
     if dry_run:

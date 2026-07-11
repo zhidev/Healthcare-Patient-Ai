@@ -3,18 +3,14 @@
     "type" : "appointment scheduling",
     "first_patient_message" : "I would like to schedule an appointment",
     "goal" : "Schedule or reschedule to the earliest available appointment on a monday.",
-    "secondary_goal" : "Then schedule a second follow-up appointment or change a second appointment to roughly one week after the first, any day",
     "reason_for_first_appointment" : "Routine checkup",
-    "reason_for_second_appointment" : "follow-up",
     "preferred_time" : "earliest availability time after noon",
     "accepts_offered_time" : true,
     "scenario_instructions": [
     "Schedule the first appointment to the earliest available Friday appointment after noon.",
     "If the agent offers an appointment day or time, compare it against the clinic profile office hours.",
     "If the offered time appears outside office hours, politely ask the agent to confirm.",
-    "After the appointment is confirmed, ask one relevant clinic detail question such as address, building, floor, parking, or elevator access.",
-    "After the appointment is confirmed, ask if there is anything the patient needs to do or bring to prepare.",
-    "Do not ask all clinic-detail questions at once."
+    "After the appointment is confirmed, ask if there is anything the patient needs to do or bring to prepare."
 ],
     "final_response" : "No, thank you!",
     "min_turns": 5,

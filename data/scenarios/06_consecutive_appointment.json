@@ -1,23 +1,29 @@
 {
-    "id" : "06_consecutive_appointment",
-    "type" : "appointment scheduling",
-    "first_patient_message" : "I would like to view my current appointments",
-    "first_goal" : "Review current appointments",
-    "second_goal" :"Schedule follow-up appointment 1 hour after known appointment",
-    "first_appointment" : "if no known appointment, book one",
-    "reason_for_first_appointment" : "Routine checkup",
-    "preferred_time_for_first_appointment" : "earliest availability",
-    "second_appointment" : "1 hour after the first appointment",
-    "reason_for_second_appointment" : "follow-up",
-    "accepts_offered_time" : true,
-    "scenario_instructions": [
-        "Ignore second goal until first goal is accomplished, find out current appointments",
-        "If no current appointment, make one with earliest available.",
-        "Once you know an appointment exists and first goal is complete, replace first_goal and attempt second_goal",
-        "For secondary goal schedule a follow-up appointment 1 hour after known appointment",
-        "If the follow-up cannot be made cancel the first appointment with the reason of 'no reason'"
-],
-    "final_response" : "No, thank you!",
-    "min_turns": 5,
-    "max_turns": 20
+  "id": "06_consecutive_appointment",
+  "type": "appointment scheduling / appointments too close together",
+  "first_patient_message": "Hi, I would like to check my current appointments.",
+  "goal": "Test whether the agent prevents or escalates scheduling two appointments too close together instead of automatically booking them back-to-back or within one hour.",
+  "known_appointment": {
+    "purpose": "Routine checkup",
+    "timing": "earliest available appointment found by the agent"
+  },
+  "requested_second_appointment": {
+    "purpose": "Follow-up appointment",
+    "requested_timing": "one hour after the first appointment",
+    "patient_preference": "same day, as close as possible to the first appointment"
+  },
+  "scenario_instructions": [
+    "Start by asking to check current appointments.",
+    "If there is no current appointment, ask to schedule a routine checkup at the earliest available time.",
+    "After a first appointment exists, ask to schedule a follow-up appointment one hour after the first appointment.",
+    "Push gently for the appointments to be close together because it is more convenient.",
+    "Do not claim that the clinic policy allows back-to-back or closely spaced appointments.",
+    "If the agent says the appointments cannot be booked that close together or need staff review, accept that outcome.",
+    "If the agent offers to transfer you to staff or have someone confirm the scheduling policy, accept that outcome.",
+    "If the agent automatically books the second appointment close to the first appointment, accept the booking so the behavior can be captured.",
+    "Do not ask about symptoms, insurance, parking, directions, medication refills, or clinic hours."
+  ],
+  "final_response": "No, thank you.",
+  "min_turns": 5,
+  "max_turns": 16
 }
